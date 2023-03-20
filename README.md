@@ -1,4 +1,4 @@
-# ControlliAutomatici22_23
+# Laboratori controlli automatici A.A. 2022/23
 
 **Laboratorio 1 - 21/03/2023**
 - Esercizio 1: simulazione sistemi dinamici LTI
