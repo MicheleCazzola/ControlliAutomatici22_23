@@ -22,7 +22,7 @@
 **Laboratorio 3 - 02/05/2023**
 # 
 **Laboratorio 4 - 09/05/2023**  
-#
+# 
 **Laboratorio 5 - 16/05/2023**  
 # 
 **Laboratorio 6 - 23/05/2023**  
