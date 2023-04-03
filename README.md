@@ -6,7 +6,7 @@
 	- Punto b: simulazione sistema elettrico
 - ***Esercizio 2:*** calcolo funzione trasferimento
 - ***Esercizio 3:*** calcolo risposta nel tempo mediante trasformata di Laplace
-#
+# 
 **Laboratorio 2 - 04/04/2023**
 - ***Esercizio 1:*** risposta di sistemi del I ordine ad ingressi canonici
 	- Punto 1: risposta all'impulso unitario
@@ -18,9 +18,9 @@
 - ***Esercizio 3:*** stabilità di sistemi dinamici LTI
 	- Punto 1: sistema a tempo continuo
 	- Punto 2: sistema a tempo discreto
-#
+# 
 **Laboratorio 3 - 02/05/2023**
-#
+# 
 **Laboratorio 4 - 09/05/2023**  
 #
 **Laboratorio 5 - 16/05/2023**  
