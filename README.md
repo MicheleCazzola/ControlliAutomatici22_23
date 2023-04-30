@@ -20,6 +20,9 @@
 	- Punto 2: sistema a tempo discreto
 # 
 **Laboratorio 3 - 02/05/2023**
+- ***Esercizio 1:*** posizionamento dei poli mediante retroazione degli stati
+- ***Esercizio 2:*** progetto di un osservatore dello stato
+- ***Esercizio 3:*** posizionamento dei poli mediante regolatore
 # 
 **Laboratorio 4 - 09/05/2023**  
 # 
