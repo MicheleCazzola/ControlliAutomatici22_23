@@ -47,9 +47,10 @@ d_x0 = {[0; 0], [0.01; 0], [-0.01; 0]};
 figure(1);
 plot(t, r, 'k');
 colors = ['r', 'g', 'b'];
+d_x = {[],[],[]};
 for i=1:1:3
     % Simulazione sistema con stato iniziale i-esimo
-    [d_y,t] = lsim(controlled_system, r, t, d_x0{i});
+    [d_y, t, d_x{i}] = lsim(controlled_system, r, t, d_x0{i});
     
     hold on
     plot(t, d_y, colors(i));
@@ -59,4 +60,12 @@ end
 legend('r(t)','\deltay(t) with \deltax_0 = [0,0]', '\deltay(t) with \deltax_0 = [0.01,0]', ...
     '\deltay(t) with \deltax_0 = [-0.01,0]');
 hold off
+
+figure(2);
+plot(t, d_x{1}(1), 'r', t, d_x{2}(1), 'g', t, d_x{3}(1), 'b');
+grid on
+
+figure(3);
+plot(t, d_x{1}(2), 'r', t, d_x{2}(2), 'g', t, d_x{3}(2), 'b');
+grid on
 
