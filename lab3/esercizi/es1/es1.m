@@ -16,7 +16,7 @@ p = [-40 -60];
 
 M_r = ctrb(system);
 if(rank(M_r) < n)
-    print('Sistema non completamente raggiungibile');
+    disp('Sistema non completamente raggiungibile');
     return
 end
 %% 2 - Progetto matrice K
