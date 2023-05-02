@@ -20,7 +20,7 @@ end
 
 %% Passo 2 - Progetto vettore colonna L
 
-L = place(A, C', eigs)';
+L = place(A', C', eigs)';
 
 %% Passo 3 - Definizione sistema controllato complessivo
 
@@ -38,13 +38,12 @@ r = sign(sin(2*pi*0.5 * t));
 x_s0 = [0; 0];
 x_tot0 = {[0; 0; x_s0], [0.01; 0; x_s0], [-0.01; 0; x_s0]};
 
-figure(1);
 [y_tot1, t1, x_tot1] = lsim(controlled_system, r, t, x_tot0{1});
 [y_tot2, t2, x_tot2] = lsim(controlled_system, r, t, x_tot0{2});
 [y_tot3, t3, x_tot3] = lsim(controlled_system, r, t, x_tot0{3});
 
 figure(1);
-plot(t1, y_tot1(:,1), 'r', t1, y_tot1(:,2), 'g', ...
+plot(t, r, 'k--', t1, y_tot1(:,1), 'r', t1, y_tot1(:,2), 'g', ...
     t2, y_tot2(:,1), 'b', t2, y_tot2(:,2), 'y',...
     t3, y_tot3(:,1), 'k', t3, y_tot3(:,2), 'm');
 grid on
