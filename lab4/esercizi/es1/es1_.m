@@ -1,1 +1,0 @@
-%% Simulazione motore elettrico controllato in velocità
