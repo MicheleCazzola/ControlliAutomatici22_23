@@ -1,0 +1,1 @@
+%% Progetto di un controllore statico e studio della stabilità
