@@ -32,7 +32,13 @@
 	- *Punto 1*: simulazione del sistema in catena aperta
 	- *Punto 2*: simulazione del sistema in catena chiusa
 # 
-**Laboratorio 5 - 16/05/2023**  
+**Laboratorio 5 - 16/05/2023** 
+- ***Esercizio 1:*** progetto di un controllore statico e studio della stabilità
+	- *Punto a*: determinazione guadagno stazionario, fase iniziale e fase finale del sistema LTI
+	- *Punto b*: disegno a mano dei diagrammi di Bode della funzione d'anello e verifica su Matlab
+	- *Punto c*: disegno diagramma di Nyquist con l'ausilio di Matlab
+	- *Punto d*: verifica asintotica stabilià ad anello chiuso con criterio di Nyquist
+	- *Punto e*: calcolo errore di inseguimento con riferimenti e disturbi differenti
 # 
 **Laboratorio 6 - 23/05/2023**  
 #  
