@@ -76,3 +76,20 @@ figure(8), plot(simout3.Time, simout3.Data(:,2) - simout3.Data(:,1)), grid on;
 % 4: e_ins = 0.8, e_d = -0.1, e_tot = 0.7
 figure(9), plot(simout4.Time, simout4.Data(:,1), 'r', simout4.Time, simout4.Data(:,2), 'b'), grid on;
 figure(10), plot(simout4.Time, simout4.Data(:,2) - simout4.Data(:,1)), grid on;
+
+%% Facoltativo - Studio stabilità ad anello chiuso al variare di Kc
+
+% Dato xA = -0.402 punto intersezione di Nyquist con semiasse reale negativo, con
+% 1/xA = 2.4876 e dato n_ia = 0:
+% - 0 < Kc < 2.4876: N = 0 -> n_ic = 0 -> Asintotica stabilità
+W1 = feedback(0.2*F, 1/Kr);
+damp(W1);
+figure(11), bode(W1), grid on;
+% - Kc > 2.4876: N = 2 -> n_ic = 2 -> Instabilità
+W2 = feedback(4*F, 1/Kr);
+damp(W2);
+figure(12), bode(W2), grid on;
+% - Kc < 0: N = 1 -> n_ic = 1 -> Instabilità
+W3 = feedback(-1*F, 1/Kr);
+damp(W3);
+figure(13), bode(W3), grid on;
