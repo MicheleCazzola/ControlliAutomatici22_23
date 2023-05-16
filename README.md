@@ -39,6 +39,7 @@
 	- *Punto c*: disegno diagramma di Nyquist con l'ausilio di Matlab
 	- *Punto d*: verifica asintotica stabilià ad anello chiuso con criterio di Nyquist
 	- *Punto e*: calcolo errore di inseguimento con riferimenti e disturbi differenti
+	- *Facoltativo*: studio stabilità ad anello chiuso mediante applicazione del criterio di Nyquist
 # 
 **Laboratorio 6 - 23/05/2023**  
 #  
