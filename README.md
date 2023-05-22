@@ -42,6 +42,20 @@
 	- *Facoltativo*: studio stabilità ad anello chiuso mediante applicazione del criterio di Nyquist
 # 
 **Laboratorio 6 - 23/05/2023**  
+- ***Esercizio 1:*** progetto di un controllore statico e studio della stabilità
+  	- *Punto a*: determinazione guadagno stazionario, fase iniziale e fase finale del sistema LTI
+	- *Punto b*: disegno a mano dei diagrammi di Bode della funzione d'anello e verifica su Matlab
+	- *Punto c*: disegno diagramma di Nyquist con l'ausilio di Matlab
+	- *Punto d*: verifica asintotica stabilià ad anello chiuso con criterio di Nyquist, al variare del guadagno K<sub>c</sub>
+	- *Punto e*: calcolo errore di inseguimento con riferimenti e disturbi differenti
+	- *Punto f*: verifica risultati ottenuti con modello Simulink
+- ***Esercizio 2:*** progetto di un controllore statico e studio della stabilità
+  	- *Punto a*: determinazione guadagno stazionario, fase iniziale e fase finale del sistema LTI
+	- *Punto b*: disegno a mano dei diagrammi di Bode della funzione d'anello e verifica su Matlab
+	- *Punto c*: disegno diagramma di Nyquist con l'ausilio di Matlab
+	- *Punto d*: verifica asintotica stabilià ad anello chiuso con criterio di Nyquist, al variare del guadagno K<sub>c</sub>
+	- *Punto e*: calcolo errore di inseguimento con riferimenti e disturbi differenti
+	- *Punto f*: verifica risultati ottenuti con modello Simulink
 #  
 **Laboratorio 7 - 30/05/2023**
 #  
