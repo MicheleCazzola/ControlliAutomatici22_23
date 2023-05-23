@@ -1,6 +1,8 @@
 %% Progetto di un controllore statico e verifica della stabilità in catena chiusa
 
-clc, clear all, close all
+clc
+clear all
+close all
 
 %% Definizione funzione di trasferimento sistema LTI
 s = tf('s');
@@ -49,10 +51,10 @@ figure(2), nyquist(Ga, w);
 %% Punto d - Studio stabilità ad anello chiuso al variare di Kc e verifica con Kc = 800
 
 % Dato 1/xA = 645.65
-% Dato n_ia = 0
-% 1: 0 < Kc < 645.65 -> N = 1 (o forse 2?) -> n_ic = 1(2) -> Instabile
-% 2: Kc > 645.65 -> N = 0 -> Stabile
-% 3: Kc < 0 -> N = 1 -> Instabile
+% Dato n_ia = 1
+% 1: 0 < Kc < 645.65 -> N = 1 -> n_ic = 2 -> Instabile
+% 2: Kc > 645.65 -> N = -1 -> n_ic = 0 -> Stabile
+% 3: Kc < 0 -> N = 0 -> n_ic = 1 -> Instabile
 
 Kc = 800;
 W = feedback(Kc * F, 1/Kr);
@@ -62,29 +64,31 @@ figure(3), bode(W, w), grid on;
 damp(W)
 %% Punto e - Calcolo errore inseguimento in regime permanente
 
+Ga = Kc * F / Kr;
+We = Kr * feedback(1, Ga);
+Wd1 = feedback(F, Kc/Kr);
+Wd2 = feedback(1, Ga);
+
 D1_1 = 0.1;
 D2_1 = 0.5;
-Ga = Kc * F / Kr;
-KGa = dcgain(s*Ga);
 
 % r(t) rampa, Ga tipo 1 -> errore limitato
-e_r_1 = 1/KGa;
+e_r_1 = dcgain(s * We * 1/s^2);
 % d1(t) costante, F tipo 1, C tipo 0 -> errore limitato
-e_d1_1 = - D1_1 / (Kc/Kr);
+e_d1_1 = -dcgain(s * Wd1 * D1_1/s);
 % d2(t) costante, Ga tipo 1 -> errore nullo
-e_d2_1 = 0;
+e_d2_1 = -dcgain(s * Wd2 * D2_1/s);
 e_tot_1 = e_r_1 + e_d1_1 + e_d2_1; % da simulazione, si ha errore doppio
 
 D1_2 = 0;
 alfa2_2 = 0.01;
 
 % r(t) costante, Ga tipo 1 -> errore nullo
-e_r_2 = 0;
-
+e_r_2 = dcgain(s * We * 1/s);
 % d1(t) nullo -> errore nullo
-e_d1_2 = 0;
+e_d1_2 = -dcgain(s * Wd1 * D1_2/s);
 % d2(t) rampa, Ga tipo 1 -> errore limitato
-e_d2_2 = - alfa2_2 / KGa;
+e_d2_2 = -dcgain(s * Wd2 * alfa2_2/s^2);
 e_tot_2 = e_r_2 + e_d1_2 + e_d2_2;
 
 % Prova punto 1
