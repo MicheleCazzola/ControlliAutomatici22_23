@@ -91,10 +91,10 @@ e_d1_2 = -dcgain(s * Wd1 * D1_2/s);
 e_d2_2 = -dcgain(s * Wd2 * alfa2_2/s^2);
 e_tot_2 = e_r_2 + e_d1_2 + e_d2_2;
 
-% Prova punto 1
-%diff1 = output1.Data(:,1) - output1.Data(:,2);
+% Plot simulazione 1
+figure(4), plot(output1.Time, output1.Data(:,1), 'r', output1.Time, output1.Data(:,2), 'b'), grid on;
+figure(5), plot(output1.Time, output1.Data(:,2) - output1.Data(:,1), 'b'), grid on;
 
-% Prova punto 2
-%diff2 = output2.Data(:,1) - output2.Data(:,2);
-
-%mean(diff2(13000:13172,1))
+% Plot simulazione 2
+figure(6), plot(output2.Time, output2.Data(:,1), 'r', output2.Time, output2.Data(:,2), 'b'), grid on;
+figure(7), plot(output2.Time, output2.Data(:,2) - output2.Data(:,1), 'b'), grid on;
