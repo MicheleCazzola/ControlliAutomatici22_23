@@ -56,8 +56,28 @@
 	- *Punto d*: verifica asintotica stabilià ad anello chiuso con criterio di Nyquist, al variare del guadagno K<sub>c</sub>
 	- *Punto e*: calcolo errore di inseguimento con riferimenti e disturbi differenti
 	- *Punto f*: verifica risultati ottenuti con modello Simulink
-#  
+#
 **Laboratorio 7 - 30/05/2023**
-#  
+- ***Esercizio 1:*** progetto di un controllore analogico mediante sintesi per tentativi
+  Soddisfare le specifiche sui seguenti parametri:
+  - *a)*: errore di inseguimento
+  - *b)*: effetto di un disturbo posto sull'uscita
+  - *c)*: banda passante del sistema retroazionato
+  - *d)*: picco di risonanza della risposta in frequenza ad anello chiuso
+  Verificare il rispetto di tali specifiche.
+  Valutare:
+  - *a)*: errore di inseguimento massimo in regime permanente, con riferimento dato
+  - *b)*: attenuazione di disturbi dati, oltre pulsazione nota
+- ***Esercizio 2:*** progetto di un controllore analogico mediante sintesi per tentativi
+  Soddisfare le specifiche sui seguenti parametri:
+  - *a)*: errore di inseguimento
+  - *b)*: effetto di un disturbo posto sull'uscita
+  - *c)*: tempo di salita della risposta al gradino unitario
+  - *d)*: sovraelongazione massima della risposta al gradino unitario
+  Verificare il rispetto di tali specifiche.
+  Valutare:
+  - *a)*: attività massima sul comando, con riferimento dato
+  - *b)*: banda passante e picco di risonanza della risposta in frequenza ad anello chiuso
+#
 **Laboratorio 8 - 06/06/2023**   
 #  
