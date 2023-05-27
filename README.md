@@ -59,25 +59,40 @@
 #
 **Laboratorio 7 - 30/05/2023**
 - ***Esercizio 1:*** progetto di un controllore analogico mediante sintesi per tentativi
-  Soddisfare le specifiche sui seguenti parametri:
-  - *a)*: errore di inseguimento
-  - *b)*: effetto di un disturbo posto sull'uscita
-  - *c)*: banda passante del sistema retroazionato
-  - *d)*: picco di risonanza della risposta in frequenza ad anello chiuso
-  Verificare il rispetto di tali specifiche.
-  Valutare:
-  - *a)*: errore di inseguimento massimo in regime permanente, con riferimento dato
-  - *b)*: attenuazione di disturbi dati, oltre pulsazione nota
+  -	Soddisfare le specifiche sui seguenti parametri:
+	  - *a)*: errore di inseguimento
+	  - *b)*: effetto di un disturbo posto sull'uscita
+	  - *c)*: banda passante del sistema retroazionato
+	  - *d)*: picco di risonanza della risposta in frequenza ad anello chiuso
+  -	Verificare il rispetto di tali specifiche
+  -	Valutare:
+	  - *a)*: errore di inseguimento massimo in regime permanente, con riferimento dato
+	  - *b)*: attenuazione di disturbi dati, oltre pulsazione nota
 - ***Esercizio 2:*** progetto di un controllore analogico mediante sintesi per tentativi
-  Soddisfare le specifiche sui seguenti parametri:
-  - *a)*: errore di inseguimento
-  - *b)*: effetto di un disturbo posto sull'uscita
-  - *c)*: tempo di salita della risposta al gradino unitario
-  - *d)*: sovraelongazione massima della risposta al gradino unitario
-  Verificare il rispetto di tali specifiche.
-  Valutare:
-  - *a)*: attività massima sul comando, con riferimento dato
-  - *b)*: banda passante e picco di risonanza della risposta in frequenza ad anello chiuso
+  -	Soddisfare le specifiche sui seguenti parametri:
+	  - *a)*: errore di inseguimento
+	  - *b)*: effetto di un disturbo posto sull'uscita
+	  - *c)*: tempo di salita della risposta al gradino unitario
+	  - *d)*: sovraelongazione massima della risposta al gradino unitario
+  -	Verificare il rispetto di tali specifiche
+  -	Valutare:
+	  - *a)*: attività massima sul comando, con riferimento dato
+	  - *b)*: banda passante e picco di risonanza della risposta in frequenza ad anello chiuso
 #
 **Laboratorio 8 - 06/06/2023**   
-#  
+- ***Esercizio 1:*** progetto di un controllore digitale per un motore elettrico
+  -	Progettare il controllore digitale, soddisfando le specifiche sui seguenti parametri:
+	  -	*a)*: errore di inseguimento a riferimento costante
+	  -	*b)*: errore di inseguimento a riferimento a rampa
+	  -	*c)*: sovraelongazione massima della risposta al gradino unitario
+	  -	*d)*: tempo di salita della risposta al gradino unitario
+  -	Progettare il controllore analogico, sulla base del modello semplificato
+  -	*Verifica 1*:
+	  -	verificare il rispetto delle specifiche, sulla base del modello semplificato
+	  -	valutare l'attività massima sul comando
+  -	*Verifica 2*:
+	  -	verificare il rispetto delle specifiche, sulla base del modello completo
+	  -	confrontare il comportamento con modello completo e con modello semplificato
+- ***Esercizio 2:*** progetto di un controllore PID
+  -	*Punto a*: progettare il controllore
+  -	*Punto b*: valutare tempo di salita e sovraelongazione massima della risposta al gradino del sistema retroazionato
