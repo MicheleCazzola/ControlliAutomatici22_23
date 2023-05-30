@@ -1,6 +1,6 @@
 %% Progetto di un controllore analogico mediante sintesi per tentativi
 
-clc, clear all, close all;
+clear all, close all;
 
 % Definizione sistema
 s = tf('s');
@@ -47,31 +47,32 @@ Ga1 = Ga * Rd^2;
 % m1 = 27 unat -> 28.5 dB
 % f1 = -110° (circa 20° superiore al margine)
 
-% Attenuatrice (doppia)
-mi = 5;
-xi = 30;
+% Attenuatrice (singola)
+mi = 25;
+xi = 80;
 taui = xi/wcdes;
 Ri = (1 + taui*s/mi) / (1 + taui*s);
-Ga2 = Ga1 * Ri^2;
+figure, bode(Ri, w_int), grid on;
+Ga2 = Ga1 * Ri;
 [m2, f2] = bode(Ga2, wcdes);
-C = Kc * Rd^2 * Ri^2 / s;
+C = Kc * Rd^2 * Ri / s;
 
 % m2 = 1.09 unat -> 0.78 dB
 % f2 = -125° (margine di circa 55°)
 
 % Verifica specifiche dinamiche
-W = feedback(Ga2, 1);
+W = feedback(C*F, 1/Kr);
 figure(2), margin(Ga2), grid on;
 figure(3), bode(W, w_int), grid on;
 
-% wb_reale = 6.74 < wbmax = 6.9 rad/s
-% Mr_reale = 1.75 dB < Mrmax = 2 dB
+% wb_reale = 6.85 < wbmax = 6.9 rad/s
+% Mr_reale = 1.83 dB < Mrmax = 2 dB
 
 figure(4), step(W), grid on;
 
-% ts = 0.41 s
-% ta_2% = 2.6 s -> solo un ordine di grandezza differente
-% s^ = 22% al tempo t^ = 0.73 s
+% ts = 0.405 s
+% ta_2% = 2.3 s -> solo un ordine di grandezza differente
+% s^ = 22.6% al tempo t^ = 0.715 s
 
 % Verifica specifiche statiche effettuata in simulink -> Soddisfatte
 
@@ -79,7 +80,7 @@ figure(4), step(W), grid on;
 wrif = 0.1;     % rad/s
 We = Kr*feedback(1, Ga2);
 figure, bode(We), grid on;
-[erifmax, ~] = bode(We, wrif);  % pari a 0.0016 unat -> -56 dB
+[erifmax, ~] = bode(We, wrif);  % pari a 0.0023 unat -> -56 dB
 
 % Attenuazione disturbi sinusoidali di pulsazione w > wdmin = 100 rad/s
 wdmin = 100;        % rad/s
