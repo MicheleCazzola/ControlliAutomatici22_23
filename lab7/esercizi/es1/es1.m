@@ -38,52 +38,52 @@ mphmin = 60 - 5*Mrmax;
 
 % Anticipatrice (doppia)
 md = 4;
-xd = 1.5;
+xd = 1;
 taud = xd/wcdes;
 Rd = (1 + taud*s) / (1 + taud*s/md);
 Ga1 = Ga * Rd^2;
 [m1, f1] = bode(Ga1, wcdes);
 
-% m1 = 27 unat -> 28.5 dB
-% f1 = -110° (circa 20° superiore al margine)
+% m1 = 17.6 unat -> 25 dB
+% f1 = -119° (circa 10° superiore al margine)
 
 % Attenuatrice (singola)
-mi = 25;
-xi = 80;
+mi = 17;
+figure(2), bode((1+s/mi)/(1+s)), grid on;
+xi = 120;
 taui = xi/wcdes;
 Ri = (1 + taui*s/mi) / (1 + taui*s);
-figure, bode(Ri, w_int), grid on;
 Ga2 = Ga1 * Ri;
 [m2, f2] = bode(Ga2, wcdes);
+
 C = Kc * Rd^2 * Ri / s;
 
-% m2 = 1.09 unat -> 0.78 dB
-% f2 = -125° (margine di circa 55°)
+% m2 = 1.05 unat -> 0.39 dB
+% f2 = -126° (margine di circa 55°)
 
 % Verifica specifiche dinamiche
 W = feedback(C*F, 1/Kr);
-figure(2), margin(Ga2), grid on;
-figure(3), bode(W, w_int), grid on;
+figure(3), margin(Ga2), grid on;
+figure(4), bode(W, w_int), grid on;
 
-% wb_reale = 6.85 < wbmax = 6.9 rad/s
-% Mr_reale = 1.83 dB < Mrmax = 2 dB
+% wb_reale = 5.89 > wbmin = 5.1 rad/s
+% Mr_reale = 1.9 dB < Mrmax = 2 dB
 
-figure(4), step(W), grid on;
+figure(5), step(W), grid on;
 
-% ts = 0.405 s
-% ta_2% = 2.3 s -> solo un ordine di grandezza differente
-% s^ = 22.6% al tempo t^ = 0.715 s
+% ts = 0.437 s
+% ta_2% = 2.75 s -> solo un ordine di grandezza differente
+% s^ = 21.7% al tempo t^ = 0.785 s
 
 % Verifica specifiche statiche effettuata in simulink -> Soddisfatte
 
 % Errore inseguimento massimo in regime permanente per r(t) = sin(0.1t)
 wrif = 0.1;     % rad/s
 We = Kr*feedback(1, Ga2);
-figure, bode(We), grid on;
-[erifmax, ~] = bode(We, wrif);  % pari a 0.0023 unat -> -56 dB
+figure(6), bode(We), grid on;
+[erifmax, ~] = bode(We, wrif);  % pari a 0.0033 unat -> -49.6 dB
 
 % Attenuazione disturbi sinusoidali di pulsazione w > wdmin = 100 rad/s
 wdmin = 100;        % rad/s
-%Wd = feedback(F, C/Kr);
-figure, bode(W, logspace(1,4)), grid on;
-[edmax, ~] = bode(W, wdmin);   % pari a 0.0043 unat -> -17 dB
+figure(7), bode(W, logspace(1,4)), grid on;
+[edmax, ~] = bode(W, wdmin);   % pari a 0.0063 unat -> -44 dB

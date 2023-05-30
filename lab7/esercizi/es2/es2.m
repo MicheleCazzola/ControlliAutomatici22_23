@@ -9,7 +9,7 @@ F = 5*(s+20) / (s * (s^2 + 2.5*s + 2)*(s^2 + 15*s + 100));  % tipo 1
 Kr = 2;
 Kf = dcgain(s*F);
 
-w_int = logspace(-2, 2, 1e4);
+w_int = logspace(-2, 3, 1e4);
 alfar = 1;
 ermax = 0.05;
 d = 1;
@@ -50,7 +50,8 @@ Ga1 = Ga*Rd^2;
 
 % Attenuatrice
 mi = 24;
-xi = 150;
+figure(3), bode((1+s/mi)/(1+s)), grid on;
+xi = 200;
 taui = xi / wcdes;
 Ri = (1 + taui*s/mi) / (1 + taui*s);
 Ga2 = Ga1 * Ri;
@@ -63,24 +64,24 @@ C = Kc * Rd^2 * Ri;
 
 % Verifica specifiche dinamiche
 W = feedback(C*F, 1/Kr);
-figure(3), margin(Ga2), grid on;
-figure(4), step(W), grid on;
+figure(4), margin(Ga2), grid on;
+figure(5), step(W), grid on;
 
-% s^_reale = 29.7%
+% s^_reale = 25.4%
 % ts_reale = 1 s
 
 % Verifica specifiche statiche -> Simulink
 
 % Verifica attività sul comando per riposta al gradino -> Simulink: 240
 Wu = feedback(C, F/Kr);
-figure(5), step(Wu), grid on;
+figure(6), step(Wu), grid on;
 
 u0 = Kc * md^2 / mi;
 
 % Valutazione banda passante e picco risonanza risposta in frequenza
-figure(6), bode(W, w_int), grid on;
+figure(7), bode(W, w_int), grid on;
 
 peakdB = 8.34;
 Mr_realedB = peakdB - 20*log10(dcgain(W));
 
-% wb_reale = 4.62 rad/s (da Bode)
+% wb_reale = 4.73 rad/s (da Bode)
