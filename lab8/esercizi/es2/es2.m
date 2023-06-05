@@ -32,8 +32,8 @@ figure(4), step(Wpid);
 
 % Si ottiene:
 %   Pm = 22.9° -> decisamente basso
-%   ts = 0.136 s
-%   s^_max = 65.2%, t^_max = 0.261 s
+%   ts = 0.136 s -> veloce
+%   s^_max = 65.2%, t^_max = 0.261 s -> elevata
 %   ta_2% = 1.33 s
 
 %% Taratura con metodo di Ziegler-Nichols in anello chiuso (imposizione Pm)
@@ -64,3 +64,84 @@ figure(2), step(Wpid);
 %   ts = 0.116 s -> veloce circa come il caso classico
 %   s^_max = 31.3%, t^_max = 0.201 s -> dimezzata rispetto al caso classico
 %   ta_2% = 0.62 s -> effetto coda dimezzato rispetto al caso classico
+
+%% Metodo di Ziegler-Nichols in anello aperto
+
+% Valutazione risposta al gradino di F
+figure(1), step(F, 8), grid on;
+
+% Definizione parametri nel tempo
+Kf = 5;
+thetaf = 0.24;
+T = 2.08;
+tauf = T - thetaf;
+
+% Definizione e valutazione approssimazione
+Fapprox = Kf*exp(-thetaf*s)/(1 + tauf*s);
+figure(2), step(Fapprox, F), grid on;
+
+%% Metodo della tangente
+% Definizione regolatore
+Kp = 1.2*tauf/(Kf*thetaf);
+Ti = 2*thetaf;
+Td = 0.5*thetaf;
+
+% Introduce polo in -125 rad/s -> Non influisce quasi su wpi = 3.3 rad/s
+N = 15;
+Cpid = Kp * (1 + 1/(Ti*s) + Td*s/(1+Td*s/N));
+
+Gapid = Cpid*F;
+figure(3), margin(Gapid);
+Wpid = feedback(Gapid, 1);
+figure(4), step(Wpid);
+
+% Si ottiene:
+%   Pm = 36.8° -> superiore al caso in anello chiuso, con wpi = 3.3 rad/s
+%   ts = 0.451 s -> più lento del metodo classico in anello aperto
+%   s^_max = 37.5%, t^_max = 0.885 s -> superiore al caso in anello aperto
+%   ta_2% = 4.25 s -> effetto coda molto elevato
+
+%% Metodo di Cohen-Coon
+
+% Definizione regolatore
+Kp = (16*tauf+3*thetaf)/(12*Kf*thetaf);
+Ti = thetaf*(32*tauf+6*thetaf)/(13*tauf+8*thetaf);
+Td = 4*thetaf*tauf/(11*tauf+2*thetaf);
+
+% Introduce polo in -59 rad/s -> Non influisce quasi su wpi = 3.6 rad/s
+N = 5;
+Cpid = Kp * (1 + 1/(Ti*s) + Td*s/(1+Td*s/N));
+
+Gapid = Cpid*F;
+figure(3), margin(Gapid);
+Wpid = feedback(Gapid, 1);
+figure(4), step(Wpid);
+
+% Si ottiene:
+%   Pm = 37.1° -> simile al caso precedente, con wpi = 3.6 rad/s
+%   ts = 0.421 s -> simile al caso precedente
+%   s^_max = 37.8%, t^_max = 0.81 s -> simile al caso precedente
+%   ta_2% = 3.22 s -> effetto coda diminuito
+
+%% Metodo IMC
+
+% Definizione regolatore
+Tf = 0.1;
+Kp = (tauf+0.5*thetaf)/(Kf*(0.5*thetaf+Tf));
+Ti = tauf+0.5*thetaf;
+Td = 0.5*thetaf*tauf/(0.5*thetaf+tauf);
+
+% Introduce polo in -44 rad/s -> Non influisce quasi su wpi = 3.25 rad/s
+N = 5;
+Cpid = Kp*(1 + 1/(Ti*s) + Td*s/(1+Td*s/N));
+
+Gapid = Cpid*F;
+figure(3), margin(Gapid);
+Wpid = feedback(Gapid, 1);
+figure(4), step(Wpid);
+
+% Si ottiene:
+%   Pm = 61.7° -> simile al caso precedente, con wpi = 3.25 rad/s
+%   ts = 0.978 s -> più lento dei casi precedenti
+%   s^_max = 8.38%, t^_max = 1.44 s -> inferiore ai casi precedenti
+%   ta_2% = 3.41 s -> effetto simile al caso precedente, comunque elevato
