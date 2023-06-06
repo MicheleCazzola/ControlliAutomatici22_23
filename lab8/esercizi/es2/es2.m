@@ -138,7 +138,7 @@ Cpid = Kp*(1 + 1/(Ti*s) + Td*s/(1+Td*s/N));
 Gapid = Cpid*F;
 figure(3), margin(Gapid);
 Wpid = feedback(Gapid, 1);
-figure(4), step(Wpid);
+figure(4), step(Wpid), grid on;
 
 % Si ottiene:
 %   Pm = 61.7° -> simile al caso precedente, con wpi = 3.25 rad/s
